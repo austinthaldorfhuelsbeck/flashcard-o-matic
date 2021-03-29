@@ -1,6 +1,24 @@
 ## [View app in action here!](https://flashcard-o-matic-ath.vercel.app/)
 
-# Project: Flashcard-o-matic
+# Flashcard-O-Matic
+
+## Synopsis
+
+This project challenges abstract thinking by requiring a complex outing system. I enjoyed creating this app in an almost stream-of-consciousness first draft. From there, I refactored the code rather significantly until the structure was DRY, reused many components, and required few props and imports.
+
+## NavBar
+
+One key challenge in building this app was designing the NavBar. I opted for a single component that accepts props in accordance with the pages that need to appear in the NavBar. It saved a lot of code, is easy to maintain, and explains itself.
+
+## Organization
+
+One further challenge for myself for this project was to refactor code and set intentionality with variable names and overall direction. This allowed for use of less comments overall and more self-explanatory components.
+
+## Data
+
+The database and backend were created for us, but I had the opportunity to handle object-based data in a way that is useful for the user.
+
+# Project Description
 
 A local school has decided to put together a flashcard application, Flashcard-o-matic, to help their students study online. Teachers will use this application to create decks of flashcards for the subjects they teach, and students will study the decks. The school needs you to build the application that the students and teachers will use.
 
