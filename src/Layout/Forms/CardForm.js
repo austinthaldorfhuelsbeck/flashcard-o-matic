@@ -8,12 +8,12 @@ export default function CardForm({ isEdit = false }) {
   const params = useParams();
   const [formData, setFormData] = useState({});
   useEffect(() => {
-    const init = { name: "", description: "" };
+    const init = { front: "", back: "" };
     setFormData(init);
     if (params.cardId) {
       async function loadCard() {
         const cardFromAPI = await readCard(params.cardId);
-        setFormData(cardFromAPI);
+        setFormData(cardFromAPI.data);
       }
       loadCard();
     }
@@ -24,11 +24,11 @@ export default function CardForm({ isEdit = false }) {
     event.preventDefault();
     async function loadUpdate() {
       const updatedCard = await updateCard({ ...formData });
-      history.push(`/decks/${updatedCard.deckId}`);
+      history.push(`/decks/${updatedCard.data.deck_id}`);
     }
     async function loadCreate() {
       const newCard = await createCard(params.deckId, { ...formData });
-      history.push(`/decks/${newCard.deckId}`);
+      history.push(`/decks/${newCard.data.deck_id}`);
     }
     isEdit ? loadUpdate() : loadCreate();
   };

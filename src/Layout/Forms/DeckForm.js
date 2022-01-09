@@ -11,15 +11,15 @@ export default function DeckForm(props = { name: "", description: "" }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (history.location.pathname.includes("edit")) {
-      // Should be an edit
-      updateDeck({ ...formData })
-        .then((deck) => history.push(`/decks/${deck.data.deck_id}`));
-    } else {
-      // Should be a create
-      createDeck({ ...formData })
-        .then((deck) => history.push(`/decks/${deck.data.deck_id}`));
+    async function loadUpdate() {
+      const updatedDeck = await updateDeck({ ...formData });
+      history.push(`/decks/${updatedDeck.data.deck_id}`);
     }
+    async function loadCreate() {
+      const newDeck = await createDeck({ ...formData });
+      history.push(`/decks/${newDeck.data.deck_id}`);
+    }
+    history.location.pathname.includes("edit") ? loadUpdate() : loadCreate();
   };
   const handleChange = ({ target }) => {
     setFormData({
