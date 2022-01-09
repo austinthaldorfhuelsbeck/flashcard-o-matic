@@ -7,14 +7,14 @@ export default function Card({ card }) {
   const { url } = useRouteMatch();
 
   const handleEdit = () => {
-    history.push(`${url}/cards/${card.id}/edit`);
+    history.push(`${url}/cards/${card.card_id}/edit`);
   };
   const handleDelete = () => {
     if (
       window.confirm("Delete this card? You will not be able to recover it.")
     ) {
       async function loadDelete() {
-        await deleteCard(card.id);
+        await deleteCard(card.card_id);
       }
       loadDelete();
       history.go(0);
@@ -22,7 +22,7 @@ export default function Card({ card }) {
   };
 
   return (
-    <li key={card.id} className="list-group-item">
+    <li className="list-group-item">
       <div className="row">
         <div className="col col-6">{card.front}</div>
         <div className="col col-6">

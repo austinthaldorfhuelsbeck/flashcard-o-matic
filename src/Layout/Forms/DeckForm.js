@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { createDeck } from "../../utils/api";
+import { createDeck, updateDeck } from "../../utils/api";
 
 export default function DeckForm(props = { name: "", description: "" }) {
   // LOAD INITIAL DATA
@@ -11,9 +11,15 @@ export default function DeckForm(props = { name: "", description: "" }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    createDeck({ ...formData }).then((deck) =>
-      history.push(`/decks/${deck.id}`)
-    );
+    if (history.location.pathname.includes("edit")) {
+      // Should be an edit
+      updateDeck({ ...formData })
+        .then((deck) => history.push(`/decks/${deck.data.deck_id}`));
+    } else {
+      // Should be a create
+      createDeck({ ...formData })
+        .then((deck) => history.push(`/decks/${deck.data.deck_id}`));
+    }
   };
   const handleChange = ({ target }) => {
     setFormData({

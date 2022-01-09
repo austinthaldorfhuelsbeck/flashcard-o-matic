@@ -19,14 +19,15 @@ export default function DeckPage() {
 
   useEffect(() => {
     async function loadDeck() {
-      const deckFromAPI = await readDeck(params.deckId);
+      const dataFromAPI = await readDeck(params.deckId);
+      const deckFromAPI = dataFromAPI.data;
       setDeck(deckFromAPI);
       setCards(deckFromAPI.cards);
     }
     loadDeck();
   }, [params]);
 
-  if (deck.id) {
+  if (deck.deck_id) {
     return (
       <Switch>
         <Route exact path={url}>
@@ -36,7 +37,7 @@ export default function DeckPage() {
           <div className="card my-4" data-aos="fade-up">
             <ul className="list-group list-group-flush">
               {cards.map((card) => (
-                <Card key={card.id} card={card} />
+                <Card key={card.card_id} card={card} />
               ))}
             </ul>
           </div>

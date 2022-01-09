@@ -107,7 +107,7 @@ export async function readDeck(deckId, signal) {
  *  a promise that resolves to the updated deck.
  */
 export async function updateDeck(updatedDeck, signal) {
-  const url = `${API_BASE_URL}/decks/${updatedDeck.id}?_embed=cards`;
+  const url = `${API_BASE_URL}/decks/${updatedDeck.deck_id}?_embed=cards`;
   const options = {
     method: "PUT",
     headers,

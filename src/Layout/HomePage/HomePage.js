@@ -10,7 +10,7 @@ export default function HomePage() {
   useEffect(() => {
     async function loadDecks() {
       const response = await listDecks();
-      setDecks(response);
+      setDecks(response.data);
     }
     loadDecks();
   }, []);
@@ -26,7 +26,7 @@ export default function HomePage() {
 
   // LIST OF DECKS
   const renderDecks = (decks) => {
-    return decks.map((deck) => <Deck deck={deck} />);
+    return decks.map((deck) => <Deck key={deck.deck_id} deck={deck} />);
   };
 
   return (
