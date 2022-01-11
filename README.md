@@ -1,4 +1,4 @@
-## [View app in action here!](https://flashcard-o-matic-ath.vercel.app/)
+## [View app in action here!](https://flashcard-o-matic-one.vercel.app/)
 
 # Flashcard-O-Matic
 
