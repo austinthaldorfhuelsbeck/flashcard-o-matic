@@ -12,8 +12,8 @@ export default function CardForm({ isEdit = false }) {
     setFormData(init);
     if (params.cardId) {
       async function loadCard() {
-        const cardFromAPI = await readCard(params.cardId);
-        setFormData(cardFromAPI.data);
+        const response = await readCard(params.cardId);
+        setFormData(response);
       }
       loadCard();
     }
@@ -23,12 +23,28 @@ export default function CardForm({ isEdit = false }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     async function loadUpdate() {
-      const updatedCard = await updateCard({ ...formData });
-      history.push(`/decks/${updatedCard.data.deck_id}`);
+      try {
+        const controller = new AbortController();
+        const signal = controller.signal;
+        const updatedCard = await updateCard({ ...formData }, signal);
+        history.push(`/decks/${updatedCard.id}`);
+      } catch (error) {
+				if (error.name !== "AbortError") {
+					throw error;
+				}
+			}
     }
     async function loadCreate() {
-      const newCard = await createCard(params.deckId, { ...formData });
-      history.push(`/decks/${newCard.data.deck_id}`);
+      try {
+        const controller = new AbortController();
+        const signal = controller.signal;
+        await createCard(params.deckId, { ...formData }, signal);
+        history.push(`/decks/${params.deckId}`);
+      } catch (error) {
+				if (error.name !== "AbortError") {
+					throw error;
+				}
+			}
     }
     isEdit ? loadUpdate() : loadCreate();
   };

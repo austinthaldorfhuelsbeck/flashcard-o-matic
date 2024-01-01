@@ -41,57 +41,6 @@
       "back": "Renders the first matching child <Route> ",
       "deckId": 2,
       "id": 5
-    },
-    {
-      "cards": [],
-      "front": "b",
-      "back": "b",
-      "deckId": 1,
-      "id": 7
-    },
-    {
-      "name": "",
-      "description": "",
-      "deckId": null,
-      "id": 8
-    },
-    {
-      "name": "",
-      "description": "",
-      "front": "Shrimply",
-      "back": "Pibbles",
-      "deckId": null,
-      "id": 9
-    },
-    {
-      "name": "",
-      "description": "",
-      "deckId": null,
-      "id": 10
-    },
-    {
-      "name": "",
-      "description": "",
-      "front": "Shrimply",
-      "back": "Pibble",
-      "deckId": 1,
-      "id": 11
-    },
-    {
-      "name": "",
-      "description": "",
-      "front": "dammit",
-      "back": "blink182",
-      "deckId": 2,
-      "id": 12
-    },
-    {
-      "name": "",
-      "description": "",
-      "front": "FFF",
-      "back": "ff",
-      "deckId": 1,
-      "id": 13
     }
   ]
 }

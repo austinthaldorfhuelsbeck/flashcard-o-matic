@@ -10,7 +10,7 @@ export default function Deck({ deck }) {
     if (
       window.confirm("Delete this deck? You will not be able to recover it.")
     ) {
-      deleteDeck(deck.deck_id).then(history.go(0));
+      deleteDeck(deck.id).then(history.go(0));
     }
   };
 
@@ -25,12 +25,12 @@ export default function Deck({ deck }) {
           <h6 className="card-subtitle mb-3 text-muted">{deck.description}</h6>
           <div className="row button-row">
             <div className="col-9 view-col">
-              <Link to={`/decks/${deck.deck_id}`}>
+              <Link to={`/decks/${deck.id}`}>
                 <button type="button" className="btn btn-secondary mx-1">
                   <span className="oi oi-eye mr-1"></span>View
                 </button>
               </Link>
-              <Link to={`/decks/${deck.deck_id}/study`}>
+              <Link to={`/decks/${deck.id}/study`}>
                 <button type="button" className="btn btn-primary mx-1">
                   <span className="oi oi-book mr-1"></span>Study
                 </button>

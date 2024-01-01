@@ -13,11 +13,11 @@ export default function DeckForm(props = { name: "", description: "" }) {
     event.preventDefault();
     async function loadUpdate() {
       const updatedDeck = await updateDeck({ ...formData });
-      history.push(`/decks/${updatedDeck.data.deck_id}`);
+      history.push(`/decks/${updatedDeck.id}`);
     }
     async function loadCreate() {
       const newDeck = await createDeck({ ...formData });
-      history.push(`/decks/${newDeck.data.deck_id}`);
+      history.push(`/decks/${newDeck.id}`);
     }
     history.location.pathname.includes("edit") ? loadUpdate() : loadCreate();
   };

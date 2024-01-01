@@ -7,14 +7,17 @@ export default function Card({ card }) {
   const { url } = useRouteMatch();
 
   const handleEdit = () => {
-    history.push(`${url}/cards/${card.card_id}/edit`);
+    history.push(`${url}/cards/${card.id}/edit`);
   };
   const handleDelete = () => {
     if (
       window.confirm("Delete this card? You will not be able to recover it.")
     ) {
       async function loadDelete() {
-        await deleteCard(card.card_id);
+        const controller = new AbortController();
+        const signal = controller.signal;
+        const response = await deleteCard(card.id, signal);
+        console.log("Delete!", response)
       }
       loadDelete();
       history.go(0);

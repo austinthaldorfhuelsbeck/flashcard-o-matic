@@ -107,7 +107,7 @@ export async function readDeck(deckId, signal) {
  *  a promise that resolves to the updated deck.
  */
 export async function updateDeck(updatedDeck, signal) {
-  const url = `${API_BASE_URL}/decks/${updatedDeck.deck_id}?_embed=cards`;
+  const url = `${API_BASE_URL}/decks/${updatedDeck.id}?_embed=cards`;
   const options = {
     method: "PUT",
     headers,
@@ -158,17 +158,18 @@ export async function listCards(deckId, signal) {
  * @returns {Promise<Error|*>}
  *  a promise that resolves to the new card, which will have an `id` property.
  */
-export async function createCard(deck_id, card, signal) {
+export async function createCard(id, card, signal) {
   // There is a bug in json-server, if you post to /decks/:deckId/cards the associated deckId is a string
   // and the card is not related to the deck because the data types of the ID's are different.
   const url = `${API_BASE_URL}/cards`;
-  card.deck_id = Number(deck_id);
+  card.deckId = Number(id);
   const options = {
     method: "POST",
     headers,
     body: JSON.stringify(card),
     signal,
   };
+  console.log("Create!", options)
   return await fetchJson(url, options);
 }
 
@@ -196,7 +197,7 @@ export async function readCard(cardId, signal) {
  *  a promise that resolves to the updated card.
  */
 export async function updateCard(updatedCard, signal) {
-  const url = `${API_BASE_URL}/cards/${updatedCard.card_id}`;
+  const url = `${API_BASE_URL}/cards/${updatedCard.id}`;
   const options = {
     method: "PUT",
     headers,
